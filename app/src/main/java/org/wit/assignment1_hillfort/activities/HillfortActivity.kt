@@ -12,6 +12,7 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.assignment1_hillfort.R
 import org.wit.assignment1_hillfort.helpers.readImage
+import org.wit.assignment1_hillfort.helpers.showImagePicker
 import org.wit.assignment1_hillfort.main.MainApp
 import org.wit.assignment1_hillfort.models.HillfortModel
 import org.wit.assignment1_hillfort.models.Location
@@ -62,7 +63,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             finish()
         }
 
-
+        chooseImage.setOnClickListener {
+            showImagePicker(this, IMAGE_REQUEST);
+        }
 
         hillfortLocation.setOnClickListener {
             val location = Location(52.245696, -7.139102, 15f)
