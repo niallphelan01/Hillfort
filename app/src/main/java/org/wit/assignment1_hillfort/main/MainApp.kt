@@ -4,6 +4,7 @@ package org.wit.assignment1_hillfort.main
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.wit.assignment1_hillfort.models.HillfortJSONStore
 
 import org.wit.assignment1_hillfort.models.HillfortMemStore
 import org.wit.assignment1_hillfort.models.HillfortModel
@@ -16,7 +17,8 @@ class MainApp : Application(), AnkoLogger {
 
     override fun onCreate() {
         super.onCreate()
-        hillforts = HillfortMemStore()
+            //hillforts = HillfortMemStore()
+        hillforts = HillfortJSONStore(applicationContext)
        info("Hillfort started")
     }
 }
