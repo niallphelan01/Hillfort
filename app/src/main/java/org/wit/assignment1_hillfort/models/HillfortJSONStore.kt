@@ -5,10 +5,12 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.assignment1_hillfort.helpers.*
 import java.util.*
 
 val JSON_FILE = "hillforts.json"
+val JSON_USER_FILE = "users.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<HillfortModel>>() {}.type
 
@@ -20,6 +22,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     val context: Context
     var hillforts = mutableListOf<HillfortModel>()
+    var users = mutableListOf<Users>()
 
     constructor (context: Context) {
         this.context = context
@@ -54,10 +57,26 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     }
 
-    private fun serialize() {
+    override fun findUsers(): List<Users> {
+        TODO("Not yet implemented")
+    }
+
+    override fun createUsers(user: Users) {
+        user.user_id= generateRandomId()
+        users.add(user)
+        serializeUsers()
+    }
+
+       private fun serialize() {
         val jsonString = gsonBuilder.toJson(hillforts, listType)
         write(context, JSON_FILE, jsonString)
     }
+    private fun serializeUsers() {
+        info("Got here")
+        val jsonString = gsonBuilder.toJson(users, listType)
+        write(context, JSON_USER_FILE, jsonString)
+    }
+
 
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)

@@ -40,6 +40,14 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         }
     }
 
+    override fun findUsers(): List<Users> {
+        TODO("Not yet implemented")
+    }
+
+    override fun createUsers(user: Users) {
+        TODO("Not yet implemented")
+    }
+
     fun logAll() {
         hillforts.forEach { info("${it}") }
     }
