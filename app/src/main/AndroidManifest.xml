@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.HillfortActivity" />
         <activity android:name=".activities.HillfortListActivity">
             <intent-filter>
