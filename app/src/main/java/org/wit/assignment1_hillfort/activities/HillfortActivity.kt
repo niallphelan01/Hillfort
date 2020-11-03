@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -44,6 +45,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             description.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
         }
+        else
+            btnDelete.setVisibility(View.INVISIBLE) //only show the delete button if it is an edit
 
         btnAdd.setOnClickListener() {
             hillfort.name = hillfortName.text.toString()
@@ -62,7 +65,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             setResult(RESULT_OK)
             finish()
         }
-
+        btnDelete.setOnClickListener{
+            app.hillforts.delete(hillfort)
+            //Go back to previous screen
+            finish()
+        }
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST);
         }

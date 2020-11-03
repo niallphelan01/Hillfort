@@ -3,6 +3,7 @@
     <string name="hint_hillfortName">Hillfort Name</string>
     <string name="hint_hillfortDescription">Description</string>
     <string name="button_addHillfort">Add Hillfort</string>
+    <string name="button_deleteHillfort">Delete Hillfort</string>
     <string name="menu_addHillfort">name</string>
     <string name="menu_cancelHillfort">Cancel</string>
     <string name="enter_placemark_name">Please enter a placemark name</string>
@@ -18,4 +19,5 @@
     <string name="button_reset">Reset</string>
     <string name="hint_userName">User name</string>
     <string name="hint_userPassword">Password</string>
+    <string name="button_logout">Logout</string>
 </resources>

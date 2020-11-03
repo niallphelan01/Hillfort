@@ -12,16 +12,26 @@ import org.jetbrains.anko.startActivityForResult
 import org.wit.assignment1_hillfort.R
 import org.wit.assignment1_hillfort.main.MainApp
 import org.wit.assignment1_hillfort.models.HillfortModel
+import kotlinx.android.synthetic.main.activity_login.*
+
 
 class HillfortListActivity : AppCompatActivity(), HillfortListener {
+
+
 
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
-        app = application as MainApp
 
+
+        app = application as MainApp
+        btnLogout.setOnClickListener{
+     //if the logout is selected the clear the loggedinuser to be completed and go back to the login screen
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+         }
         toolbar.title = title
         setSupportActionBar(toolbar)
 
@@ -58,4 +68,6 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         recyclerView.adapter = HillfortAdapter(hillforts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
+
+
 }

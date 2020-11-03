@@ -16,8 +16,8 @@ class SplashActivity : AppCompatActivity() {
    override fun onCreate(savedInstanceState: Bundle?) {
         super .onCreate(savedInstanceState)
        Handler().postDelayed({
-       //startActivity(Intent(this,HillfortListActivity::class.java))
-           startActivity(Intent(this,LoginActivity::class.java))
+      // startActivity(Intent(this,HillfortListActivity::class.java))
+         startActivity(Intent(this, LoginActivity::class.java))
            finish()
        }, SPLASH_TIME_OUT)
    }
