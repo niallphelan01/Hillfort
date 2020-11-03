@@ -29,6 +29,10 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         if (exists(context, JSON_FILE)) {
             deserialize()
         }
+        if (exists(context, JSON_USER_FILE)) {
+            deserializeUsers()
+        }
+
     }
 
     override fun findAll(): MutableList<HillfortModel> {
@@ -57,8 +61,12 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
 
     }
 
-    override fun findUsers(): List<Users> {
-        TODO("Not yet implemented")
+    override fun findUsers(user_name: String?, password: String): Users? {
+        info("Got here")
+       val foundUser: Users? = users.find{ p -> p.email == user_name }
+
+        info (foundUser)
+        return foundUser
     }
 
     override fun createUsers(user: Users) {
@@ -72,7 +80,7 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         write(context, JSON_FILE, jsonString)
     }
     private fun serializeUsers() {
-        info("Got here")
+
         val jsonString = gsonBuilder.toJson(users, listType)
         write(context, JSON_USER_FILE, jsonString)
     }
@@ -82,4 +90,11 @@ class HillfortJSONStore : HillfortStore, AnkoLogger {
         val jsonString = read(context, JSON_FILE)
         hillforts= Gson().fromJson(jsonString, listType)
     }
+
+    private fun deserializeUsers() {
+        val jsonString = read(context, JSON_USER_FILE)
+        users= Gson().fromJson(jsonString, listType)
+    }
 }
+
+

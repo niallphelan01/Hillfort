@@ -4,7 +4,7 @@ interface HillfortStore {
     fun findAll(): List<HillfortModel>
     fun create(hillfort: HillfortModel)
     fun update(hillfort: HillfortModel)
-    fun findUsers(): List<Users>
+    fun findUsers(user_name: String?, password: String): Users?
     fun createUsers(user: Users)
 
 }

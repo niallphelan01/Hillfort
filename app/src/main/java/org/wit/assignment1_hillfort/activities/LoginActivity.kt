@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         }
           else{
                 //now check for username and password in the memory and open hillfort activity
-
+            app.users.findUsers(user_name, password)
 
             startActivity(Intent(this,HillfortActivity::class.java)) //start the hillfort activity if username and password match
             finish()
