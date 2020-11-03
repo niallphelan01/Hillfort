@@ -10,10 +10,21 @@ data class HillfortModel(var id: Long = 0,
                           var image: String = "",
                           var lat : Double = 0.0,
                           var lng: Double = 0.0,
-                          var zoom: Float = 0f) : Parcelable
+                          var zoom: Float = 0f,
+                          var email: String = "",
+                          var password: String = "",
+                          var userlevel: String = "") : Parcelable //user level to indicate basic or admin roles
 
 
 @Parcelize
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable
+
+
+@Parcelize
+data class Users (
+                 var user_id:Long = 0,
+                 var email: String = "",
+                 var password: String = "",
+                 var userlevel: String = ""): Parcelable //user level to indicate basic or admin roles

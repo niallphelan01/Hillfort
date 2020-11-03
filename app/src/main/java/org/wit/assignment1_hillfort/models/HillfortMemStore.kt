@@ -4,7 +4,6 @@ package org.wit.assignment1_hillfort.models
 
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.wit.assignment1_hillfort.models.HillfortStore
 
 
 var lastId = 0L
@@ -38,6 +37,14 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
             foundHillfort.zoom = hillfort.zoom
             logAll();
         }
+    }
+
+    override fun findUsers(user_name: String?, password: String): Users? {
+        TODO("Not yet implemented")
+    }
+
+    override fun createUsers(user: Users) {
+        TODO("Not yet implemented")
     }
 
     fun logAll() {
