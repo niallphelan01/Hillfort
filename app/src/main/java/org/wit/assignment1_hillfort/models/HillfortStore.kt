@@ -6,6 +6,7 @@ interface HillfortStore {
     fun update(hillfort: HillfortModel)
     fun findUsers(user_name: String?, password: String): Users?
     fun createUsers(user: Users)
+    fun delete(hillfort: HillfortModel)
 
 }
 

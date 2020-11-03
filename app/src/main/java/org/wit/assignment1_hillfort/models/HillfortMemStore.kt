@@ -47,6 +47,10 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         TODO("Not yet implemented")
     }
 
+    override fun delete(hillfort: HillfortModel) {
+        TODO("Not yet implemented")
+    }
+
     fun logAll() {
         hillforts.forEach { info("${it}") }
     }
