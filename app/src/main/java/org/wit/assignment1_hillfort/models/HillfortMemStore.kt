@@ -39,13 +39,7 @@ class HillfortMemStore : HillfortStore, AnkoLogger {
         }
     }
 
-    override fun findUsers(user_name: String?, password: String): Users? {
-        TODO("Not yet implemented")
-    }
 
-    override fun createUsers(user: Users) {
-        TODO("Not yet implemented")
-    }
 
     override fun delete(hillfort: HillfortModel) {
         TODO("Not yet implemented")

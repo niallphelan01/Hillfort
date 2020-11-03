@@ -8,12 +8,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 import org.wit.assignment1_hillfort.R
 import org.wit.assignment1_hillfort.main.MainApp
-import org.wit.assignment1_hillfort.models.Users
+import org.wit.assignment1_hillfort.models.UsersModel
+
 
 class LoginActivity : AppCompatActivity() {
 
-    var user = Users()
+    private var user = UsersModel()
     lateinit var app: MainApp
+    var loggedinUser = UsersModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +33,15 @@ class LoginActivity : AppCompatActivity() {
         }
           else{
                 //now check for username and password in the memory and open hillfort activity
-            app.users.findUsers(user_name, password)
+          if (user_name != null) {
+            user.email = user_name
+          }
+          user.password = password
+          loggedinUser = app.users.findUsers(user.copy())!!
+
+
             //add logic to allow for null or then the specific user
-            startActivity(Intent(this,HillfortActivity::class.java)) //start the hillfort activity if username and password match
+            startActivity(Intent(this,HillfortListActivity::class.java)) //start the hillfort activity if username and password match
             finish()
             }
         }
@@ -45,9 +53,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
         btnSignup.setOnClickListener{
-            user.email = "test"
-            user.password = "test"
-            user.userlevel="basic"
+            user.email = "test3"
+            user.password = "test3"
+            user.userlevel="basic3"
             app.users.createUsers(user.copy())
 
 
