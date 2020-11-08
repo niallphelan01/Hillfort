@@ -38,12 +38,14 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         app = application as MainApp
 
         var edit = false
+        var visited = false
 
         if (intent.hasExtra("hillfort_edit")) {
             edit = true
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
             hillfortName.setText(hillfort.name)
             description.setText(hillfort.description)
+            checkBoxVisited.setChecked(hillfort.visited)
             btnAdd.setText(R.string.save_hillfort)
             hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
             if (hillfort.image != null) {
@@ -54,9 +56,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         else
             btnDelete.setVisibility(View.INVISIBLE) //only show the delete button if it is an edit
 
+        checkBoxVisited.setOnClickListener(){
+            visited = checkBoxVisited.isChecked
+            info(visited)
+
+        }
+
         btnAdd.setOnClickListener() {
             hillfort.name = hillfortName.text.toString()
             hillfort.description = description.text.toString()
+            hillfort.visited = visited
+
             if (hillfort.name.isEmpty()) {
                 toast(R.string.enter_hillfort_name)
             } else {
@@ -113,8 +123,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             IMAGE_REQUEST -> {
                 if (data != null) {
                     hillfort.image = data.getData().toString()
-                    info("HEREE")
-                    info("imageName: ${hillfort.image}")
                     hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     chooseImage.setText(R.string.change_hillfort_image)
                 }
