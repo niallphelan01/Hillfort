@@ -20,4 +20,5 @@
     <string name="hint_userName">User name</string>
     <string name="hint_userPassword">Password</string>
     <string name="button_logout">Logout</string>
+    <string name="checkBoxVisited">Visited</string>
 </resources>
