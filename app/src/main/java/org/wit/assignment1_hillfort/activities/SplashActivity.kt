@@ -4,8 +4,6 @@ package org.wit.assignment1_hillfort.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-
-
 import androidx.appcompat.app.AppCompatActivity
 import org.wit.assignment1_hillfort.main.MainApp
 

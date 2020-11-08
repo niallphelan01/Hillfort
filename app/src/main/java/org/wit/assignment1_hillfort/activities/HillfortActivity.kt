@@ -13,6 +13,7 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.assignment1_hillfort.R
 import org.wit.assignment1_hillfort.helpers.readImage
+import org.wit.assignment1_hillfort.helpers.readImageFromPath
 import org.wit.assignment1_hillfort.helpers.showImagePicker
 import org.wit.assignment1_hillfort.main.MainApp
 import org.wit.assignment1_hillfort.models.HillfortModel
@@ -44,6 +45,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             hillfortName.setText(hillfort.name)
             description.setText(hillfort.description)
             btnAdd.setText(R.string.save_hillfort)
+            hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+            if (hillfort.image != null) {
+                chooseImage.setText(R.string.change_hillfort_image)
+            }
+
         }
         else
             btnDelete.setVisibility(View.INVISIBLE) //only show the delete button if it is an edit
@@ -75,13 +81,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
         }
 
         hillfortLocation.setOnClickListener {
-            val location = Location(52.245696, -7.139102, 15f)
+            info("set location button Pressed: $hillfortName")
+            val location = Location(52.1409, -10.2640, 10f)
             if (hillfort.zoom != 0f) {
                 location.lat =  hillfort.lat
                 location.lng = hillfort.lng
                 location.zoom = hillfort.zoom
             }
-            startActivityForResult(intentFor<HillfortActivity>().putExtra("location", location), LOCATION_REQUEST)
+
+            startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
         }
     }
 
@@ -105,6 +113,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {
             IMAGE_REQUEST -> {
                 if (data != null) {
                     hillfort.image = data.getData().toString()
+                    info("HEREE")
+                    info("imageName: ${hillfort.image}")
                     hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     chooseImage.setText(R.string.change_hillfort_image)
                 }
